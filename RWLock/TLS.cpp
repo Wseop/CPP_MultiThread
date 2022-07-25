@@ -1,3 +1,3 @@
 #include "TLS.h"
 
-thread_local uint16_t LThreadId = 0;
+thread_local uint32_t LThreadId = 0;

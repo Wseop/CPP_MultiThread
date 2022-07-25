@@ -66,9 +66,9 @@ void RWSpinLock::ReadLock()
 	}
 
 	// 아무도 소유하고 있지 않으면 경합하여 공유 카운트 증가
+	uint64_t beginTick = ::GetTickCount64();
 	while (true)
 	{
-		uint64_t beginTick = ::GetTickCount64();
 		for (uint32_t i = 0; i < MAX_SPIN_COUNT; i++)
 		{
 			uint32_t expected = _lockFlag.load() & READ_COUNT_MASK;
@@ -78,7 +78,7 @@ void RWSpinLock::ReadLock()
 			}
 		}
 
-		if (::GetTickCount64() - beginTick)
+		if (::GetTickCount64() - beginTick > ACQUIRE_TIMEOUT_TICK)
 		{
 			assert(false && "ACQUIRE TIMEOUT");
 		}

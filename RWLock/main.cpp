@@ -18,6 +18,7 @@ void Push()
 	{
 		WriteLockGuard writeLockGuard(lock);
 		q.push(4321);
+		cout << "PUSH" << endl;
 	}
 }
 
@@ -41,7 +42,10 @@ void Pop()
 	{
 		WriteLockGuard writeLockGuard(lock);
 		if (q.empty() == false)
+		{
 			q.pop();
+			cout << "POP" << endl;
+		}
 	}
 }
 

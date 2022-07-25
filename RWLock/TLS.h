@@ -2,4 +2,4 @@
 
 #include <cstdint>
 
-extern thread_local uint16_t LThreadId;
+extern thread_local uint32_t LThreadId;
